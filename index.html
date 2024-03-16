@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostIn</title>
+
+    <!-- add favicon -->
+    <link rel="icon" type="image/x-icon" href="./resources/images/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/x-icon" href="./resources/images/favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/x-icon" href="./resources/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="./resources/images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="./resources/images/favicon/favicon-32x32.png">
+
+    <!-- link DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- link fontawesome -->
+    <script src="https://kit.fontawesome.com/f5ad1aa0f6.js" crossorigin="anonymous"></script>
+
+    <!-- link custom css -->
+    <link rel="stylesheet" href="./style.css">
+
+    
+
+</head>
+<body class="font-mulish">
+    <!-- header -->
+    <header class="w-full md:w-4/5 mx-auto my-5"> 
+        <!-- navbar -->
+        <div>
+            <div class="navbar bg-base-100 flex-col md:flex-row">
+                <div class="flex-1">
+                  <a class="btn btn-ghost hover:bg-white text-3xl md:text-4xl font-black text-[#12132D]">PostIn</a>
+                </div>
+                <div class="flex justify-center items-center">
+                  <ul class="menu menu-horizontal px-1 items-center space-x-3 justify-center my-2">
+                    <li title="Home"><span class="bg-gray-200 border-2 border-gray-300 rounded-full p-4"><i class="fa-solid fa-house"></i></span></li>
+                    <li title="Edit"><span class="bg-gray-200 border-2 border-gray-300 rounded-full p-4"><i class="fa-solid fa-pen"></i></span></li>
+                    <li title="Add User"><span class="bg-gray-200 border-2 border-gray-300 rounded-full p-4"><i class="fa-solid fa-user-plus"></i></span></li>
+                    <li title="Favourites"><span class="bg-gray-200 border-2 border-gray-300 rounded-full p-4"><i class="fa-solid fa-flag"></i></span></li>
+                    <li><button class="btn bg-[#797DFC] text-white hover:text-black font-bold text-xl px-10 rounded-full flex items-center my-2 md:my-0">Sign In</button></li>
+                  </ul>
+                </div>
+              </div>
+        </div>
+
+        <!-- hero section -->
+        <section class="text-white mx-auto w-4/5 md:w-full">
+            <div class="hero-container bg-[#12132D] bg-[url(./resources/images/bgbanner.png)] bg-cover bg-no-repeat bg-bottom w-full rounded-[40px] py-24 px-2 md:px-10 lg:px-24 space-y-5">
+                <div class="hero-content flex flex-col lg:flex-row justify-between">
+                  <div class="hero-text w-full lg:w-1/2 space-y-5 flex flex-col items-center lg:items-start">
+                    <h1 class="text-4xl md:text-6xl font-black text-center lg:text-left">Welcome to the <span class="bg-gradient-to-r from-purple-900 to-purple-400 text-transparent bg-clip-text">PostIn</span>
+                      Forum</h1>
+                    <p class="text-xl font-medium text-center lg:text-left">Share your favorite opinion and win and wp forum coffee mug!</p>
+                    <label class="input input-bordered flex rounded-full pr-0 relative border-5 h-full w-full md:w-4/5">
+                      <input type="text" class="grow py-3 text-black uppercase" placeholder="Search" id="sort-input"/>
+                      <button class="btn bg-[#797DFC] text-white rounded-full font-bold text-base md:text-xl absolute right-0" id="sort-button"><a href="#main">Search</a></button>
+                    </label>
+                  </div>
+
+                  <div class="hero-site-info w-full lg:w-1/2 flex flex-col items-center">
+                    <ul class="bg-white text-gray-700 text-base md:text-2xl font-medium space-y-4 p-4 rounded-xl w-4/5">
+                      <li class="w-full flex justify-between px-5"><span>Registered Users</span> <span>01</span></li>
+                      <li class="w-full flex justify-between px-5"><span>Forum</span> <span>05</span></li>
+                      <li class="w-full flex justify-between px-5"><span>Topics</span> <span>01</span></li>
+                      <li class="w-full flex justify-between px-5"><span>Replies</span> <span>01</span></li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+    </header>
+
+    <div id="loader" class="mx-auto flex justify-center my-10">
+      <span class="loading loading-bars loading-lg"></span><span class="loading loading-bars loading-lg"></span><span class="loading loading-bars loading-lg"></span><span class="loading loading-bars loading-lg"></span>
+    </div>
+
+    
+
+    <!-- main -->
+    <main class="w-full md:w-4/5 mx-auto my-10 hidden" id="main">
+      <div class="main-title w-full px-2 md:w-4/5 lg:w-1/2 mx-auto text-center space-y-3">
+        
+        <h1 class="text-4xl font-black">Let's Discuss</h1>
+        <p>The discussion section creates a platform for vibrant exchanges, encouraging users to share thoughts, engage in conversations, and foster a sense of community through diverse interactions and perspectives.</p>
+      </div>
+
+      <div id="search-loader" class="mx-auto flex justify-center my-10 hidden" >
+        <span class="loading loading-ball loading-xs"></span>
+        <span class="loading loading-ball loading-sm"></span>
+        <span class="loading loading-ball loading-md"></span>
+        <span class="loading loading-ball loading-lg"></span>
+      </div>
+      
+
+      <!-- post container -->
+      <section class="posts grid grid-cols-1 lg:grid-cols-3 my-10 mx-5 md:mx-0" id="new-post-container">
+
+        <!-- post -->
+        <div class="post-container col-span-2" id="post-container">
+          <div>
+          </div>
+        </div>
+
+
+        <div class="fav-posts bg-gray-200 p-3 h-fit my-5 rounded-lg shadow-xl" id="fav-div">
+          <div class="flex justify-between">
+            <h3>Title</h3>
+            <p><i class="fa-solid fa-check-double" style="color: #176b00;"></i> Mark as read (<span id="read">0</span>)</p>
+          </div>
+
+          
+        </div>
+      </section>
+
+      <!-- forum section -->
+      <section class="my-10 forum-container flex flex-col lg:flex-row bg-[#12132D] px-10 py-5 gap-10 rounded-3xl">
+        <div class="w-full lg:w-1/2 text-white space-y-5 flex flex-col items-center justify-center">
+          <h1 class=" font-black text-4xl">Join Our Forum</h1>
+          <p class="text-center">Share your favorite opinion and win and wp forum coffee mug! Yes, you can run unit tests and view the results directly within the app. </p>
+          <button class="btn rounded-full text-white hover:text-black bg-[#797DFC] border-none">Registered Now</button>
+        </div>
+        <div class="w-full lg:w-1/2 flex justify-center items-center">
+          <img src="./resources/images/joinforum.png" alt="">
+        </div>
+      </section>
+
+
+      <!-- latest posts -->
+      <div class="main-title w-full px-2 md:w-4/5 lg:w-1/2 mx-auto text-center space-y-3 my-10">
+        
+        <h1 class="text-4xl font-black">Latest Posts</h1>
+        <p>The latest posts section showcases recent content, providing users with a glimpse into the site's latest articles or updates, encouraging exploration and engagement.</p>
+      </div>
+
+      <section class="latest-posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mx-1 md:mx-0" id="latest-posts">
+        
+      
+      </section>
+    </main>
+
+    <!-- footer -->
+    <footer class="bg-gray-200 flex items-center justify-center px-2 text-center py-10">
+      <section class="space-y-3">
+        <h1 class="text-3xl font-black">PostIn</h1>
+        <p class="w-full md:w-1/2 mx-auto my-5">Thank you for visiting PostIn Forum! Join our vibrant community of thinkers, creators, and enthusiasts. Share your insights, engage in discussions, and explore new perspectives. Let's build a world of knowledge together. Happy posting!</p>
+
+        <span class="text-2xl space-x-3 my-5">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-github"></i>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-x-twitter"></i>
+        </span>
+
+        <hr class="border-dashed w-full border-1 border-black my-4">
+
+        <p>2023, All Rights Reserved.</p>
+      </section>
+    </footer>
+    
+
+    <!-- link js script -->
+    <script src="./script.js"></script>
+    <script src="./latest.js"></script>
+    <script src="./searchHandle.js"></script>
+</body>
+</html>
